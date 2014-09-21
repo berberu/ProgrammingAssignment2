@@ -1,4 +1,5 @@
-## function creates special "matrix" object that can cache its inverse
+## function creates special "matrix" object that can cache its inverse to save costly recalc if the value hasn't changed
+## takes advantage of scoping rules & how they can be manipulated to preserve state inside of R object
 makeCacheMatrix <- function(x=matrix())   {
   i <- NULL # initial to Null
   set <- function(y) {
@@ -13,7 +14,7 @@ makeCacheMatrix <- function(x=matrix())   {
        getinv = getinv)
 }
 
-## calc inverse of matrix x if not in cache or use from cache
+## calc inverse of matrix 'x' if not in cache or use from cache
 ## returned by makeCacheMatrix
 cacheSolve <- function(x, ...) {
   ## Return inverse of matrix 'x'
